@@ -1,0 +1,551 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS Block," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
+<meta name="keywords" content="iOS Block">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的Block浅析">
+<meta property="og:url" content="http://yoursite.com/year/05/05/常用的Block浅析/index.html">
+<meta property="og:site_name" content="张东帅小菜地">
+<meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
+<meta property="og:updated_time" content="2017-06-03T06:59:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用的Block浅析">
+<meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 常用的Block浅析 | 张东帅小菜地 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">张东帅小菜地</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">iOS开发	 Python爱好者</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用的Block浅析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-05T16:06:46+08:00" content="2017-05-05">
+              2017-05-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解  </p>
+<h2 id="Block类型反推"><a href="#Block类型反推" class="headerlink" title="Block类型反推"></a>Block类型反推</h2><p>如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的， </p>
+<ul>
+<li><p>全局block</p>
+<blockquote>
+<p><code>typedef int(^my)(int a);  有返回值有入参的全局block</code><br><code>typedef void(^viewblock)(); 无返回无入参的全局block</code></p>
+</blockquote>
+</li>
+<li><p>属性block</p>
+<blockquote>
+<p><code>@property (nonatomic, copy)void(^propertyBlock)(); 作为属性的block</code></p>
+</blockquote>
+</li>
+<li><p>参数block</p>
+<blockquote>
+<p><code>+ (void)Classhaha:(void(^)())block {</code><br><code>//作为参数传递的block,也可以是全局声明好的block</code><br><code>}</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="众大V的博客中大多指出在ARC环境中有以下几种类型"><a href="#众大V的博客中大多指出在ARC环境中有以下几种类型" class="headerlink" title="众大V的博客中大多指出在ARC环境中有以下几种类型"></a>众大V的博客中大多指出在ARC环境中有以下几种类型</h3><p>a._NSConcreateStackBlock    没有强指针引用的block都是stackBlock<br>b._NSConcreateMallockBlock    有强指针引用的block或被copy 修饰的属性block都是MallocBlock<br>c._NSConcreateGlobalBlock    没有用外部变量或只用全局、静态变量的为GlobalBlock</p>
+<h3 id="从捕获外部变量的角度上来看"><a href="#从捕获外部变量的角度上来看" class="headerlink" title="从捕获外部变量的角度上来看"></a>从捕获外部变量的角度上来看</h3><p>a._NSConcreateStackBlock    只用到外部局部变量、成员属性变量，且没有强指针引用的block都是stackBlock，其生命周期由系统控制，一旦返回后，就被系统销毁了<br>b._NSConcreateMallocBlock   有强指针引用或copy修饰的成员属性引用的block会被复制到一份到堆中成为MallocBlock，没有强指针引用即销毁，生命周期由程序猿控制<br>c._NSConcreateGlobalBlock   没有用到外部变量或只用到全局变量、静态变量的block为GlobalBlock，生命周期从创建到应用程序结束  </p>
+<h3 id="从持用对象的角度来看"><a href="#从持用对象的角度来看" class="headerlink" title="从持用对象的角度来看"></a>从持用对象的角度来看</h3><p>a._NSConcreateStackBlock    是不持有对象的，常见形式有:如果block中用到了外部变量，那么多数会由NSConcreateGlobalBlock转换而来<br>b._NSConcreateMallockBlock    是持有对象的，常见的形式有:block作为属性被copy修饰<br>c._NSConcreateGlobalBlock    也不持有对象，常见的形式有:block作为参数传递且block实现中无任何代码</p>
+<h3 id="block从栈被copy到堆的情况"><a href="#block从栈被copy到堆的情况" class="headerlink" title="block从栈被copy到堆的情况"></a>block从栈被copy到堆的情况</h3><p>a.copy属性修饰符<br>b.手动copy调用方法<br>c.block被强引用，被赋值给’__strong’或者’id’类型<br>d.block是函数的返回值，这个也好理解，如果不被copy那么在生成block的函数执行完，按道理block也应该被销毁，为保证其可以继续使用，copy以延长其生命周期就很有必要<br>e.调用系统API入参中含有usingBlock的方法</p>
+<h3 id="block作用"><a href="#block作用" class="headerlink" title="__block作用"></a>__block作用</h3><p>我们都知道如果在方法实现中定义一个局部变量，那么如果要在block 中对该变量进行修改的话，是需要用<strong>block 进行修饰的，那么为什么一个属性或者一个私有的成员变量不需要用</strong>block 修饰呢？那么你可以试着打印一下这三者的指针地址或许会有种醍醐灌顶的感觉，__block 的作用也只是把在栈区的变量copy 到堆区罢了；<br>ps: 如果对block 的这种设计还是有些迷惑，那不妨这样想想，block 是一种函数指针，当变量进入了block 实际上就改变了它的作用域（block 作为入参，block作为返回值等等），那么在几个作用域之间进行切换，变量的可维护性就会大大降低，也会导致一些无法预计的问题。由此，这种限制修改变量的设计就很有必要了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>1.block的类型与内部变量所在内存的区域息息相关<br>2.闭包就是可以访问其他函数内部变量的函数，当然它的作用不仅与次<br>3.使用block过程中其实只需要注意两个问题，一是循环引用，避免它的要点是先判断block是否被某个实例对象强引用，同时在block内也会对这个对象进行捕获；二是self在block作用域内会销毁，</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS-Block/" rel="tag">#iOS Block</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/03/14/时隔半年后的更新-Markdown基础写法/" rel="next" title="时隔半年后的更新-Markdown基础写法">
+                <i class="fa fa-chevron-left"></i> 时隔半年后的更新-Markdown基础写法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/year/05/29/Runloop笔记/" rel="prev" title="Runloop笔记">
+                Runloop笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://pic2.zhimg.com/d7138af71_im.jpg"
+               alt="张东帅" />
+          <p class="site-author-name" itemprop="name">张东帅</p>
+          <p class="site-description motion-element" itemprop="description">说不定我一生涓涓细流侥幸汇聚成河</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mumusa" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/Jungo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block类型反推"><span class="nav-number">2.</span> <span class="nav-text">Block类型反推</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众大V的博客中大多指出在ARC环境中有以下几种类型"><span class="nav-number">2.1.</span> <span class="nav-text">众大V的博客中大多指出在ARC环境中有以下几种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从捕获外部变量的角度上来看"><span class="nav-number">2.2.</span> <span class="nav-text">从捕获外部变量的角度上来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从持用对象的角度来看"><span class="nav-number">2.3.</span> <span class="nav-text">从持用对象的角度来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block从栈被copy到堆的情况"><span class="nav-number">2.4.</span> <span class="nav-text">block从栈被copy到堆的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block作用"><span class="nav-number">2.5.</span> <span class="nav-text">__block作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  危机纪元元年 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张东帅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

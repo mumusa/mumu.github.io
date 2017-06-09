@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
+<meta name="description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
 <meta name="keywords" content="iOS Block">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用的Block浅析">
 <meta property="og:url" content="http://mumusa.github.io/year/05/05/常用的Block浅析/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
-<meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
-<meta property="og:updated_time" content="2017-06-09T01:31:59.000Z">
+<meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
+<meta property="og:updated_time" content="2017-06-09T01:51:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的Block浅析">
-<meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
+<meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
 
 
 
@@ -376,6 +376,7 @@
 
       
         <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解  </p>
+<a id="more"></a> 
 <h2 id="Block类型反推"><a href="#Block类型反推" class="headerlink" title="Block类型反推"></a>Block类型反推</h2><p>如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的， </p>
 <ul>
 <li><p>全局block</p>

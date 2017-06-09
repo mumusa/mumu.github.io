@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://mumusa.github.io/year/06/05/JavaScript学习笔记/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="变量1.undefined 未定义，变量声明了，但是没有赋值2.变量可以重复赋值，而且不受变量类型影响var age;age = “haha”;age = 19; 3.声明多个变量var name = &amp;quot;lisa&amp;quot;, gender = &amp;quot;female&amp;quot;, age = 13; 4.判断类型123var temp;temp = 18;alert(typeof(t">
-<meta property="og:updated_time" content="2017-06-09T01:36:46.000Z">
+<meta property="og:updated_time" content="2017-06-09T01:51:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript学习笔记">
 <meta name="twitter:description" content="变量1.undefined 未定义，变量声明了，但是没有赋值2.变量可以重复赋值，而且不受变量类型影响var age;age = “haha”;age = 19; 3.声明多个变量var name = &amp;quot;lisa&amp;quot;, gender = &amp;quot;female&amp;quot;, age = 13; 4.判断类型123var temp;temp = 18;alert(typeof(t">
@@ -379,6 +379,7 @@
 <h2 id="3-声明多个变量"><a href="#3-声明多个变量" class="headerlink" title="3.声明多个变量"></a>3.声明多个变量</h2><p><code>var name = &quot;lisa&quot;, gender = &quot;female&quot;, age = 13;</code></p>
 <h2 id="4-判断类型"><a href="#4-判断类型" class="headerlink" title="4.判断类型"></a>4.判断类型</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> temp;</div><div class="line">temp = <span class="number">18</span>;</div><div class="line">alert(<span class="keyword">typeof</span>(temp));<span class="comment">//number</span></div></pre></td></tr></table></figure>
 <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="JS数据类型："><a href="#JS数据类型：" class="headerlink" title="JS数据类型："></a>JS数据类型：</h2><p>布尔类型：Boolean<br>数字类型：Number<br>字符串类型：String<br>数组类型：Array<br>对象类型：Object<br>特殊类型：Undifine、Null</p>
+<a id="more"></a> 
 <h2 id="特殊判断"><a href="#特殊判断" class="headerlink" title="特殊判断"></a>特殊判断</h2><p>isNaN() 是不是合法数值<br>NaN 是不合法数值<br>数值，或者数值类型的字符串都是合法的<br>布尔类型，true，false就是1/0</p>
 <p>isNaN(NaN)     //true<br>isNaN(11)        //false<br>isNaN(“11”)    //false<br>isNaN(true)    //false<br>isNaN(false)    //false</p>
 <p>Boolean(“haha”)    //true<br>Boolean(“”)        //false<br>Boolean(188)        //true<br>Boolean(0)        //false<br>Boolean(NaN)        //false<br>Boolean(null)        //false<br>Boolean(object)    //true<br>Boolean(undefined)    //false</p>

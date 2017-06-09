@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://mumusa.github.io/year/05/29/Runloop笔记/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="开篇关于Runloop的一点笔记 基本介绍Runloop本质是一个‘do while’循环，解决的问题就是让程序在接受到任务时就开始执行任务，在没有任务时处于休眠状态下；从App层面上来看，一般app处于前台那么就会处于执行任务的状态；app处于后台那么就会处于休眠状态；从代码层面上来看，我们都知道一个App可以看成一个进程，而进程的最小单位是线程，每个线程在执行完后是会退出的。那么Runloop">
-<meta property="og:updated_time" content="2017-06-09T01:37:11.000Z">
+<meta property="og:updated_time" content="2017-06-09T01:52:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runloop笔记">
 <meta name="twitter:description" content="开篇关于Runloop的一点笔记 基本介绍Runloop本质是一个‘do while’循环，解决的问题就是让程序在接受到任务时就开始执行任务，在没有任务时处于休眠状态下；从App层面上来看，一般app处于前台那么就会处于执行任务的状态；app处于后台那么就会处于休眠状态；从代码层面上来看，我们都知道一个App可以看成一个进程，而进程的最小单位是线程，每个线程在执行完后是会退出的。那么Runloop">
@@ -377,6 +377,7 @@
       
         <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>关于Runloop的一点笔记</p>
 <h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>Runloop本质是一个‘do while’循环，解决的问题就是让程序在接受到任务时就开始执行任务，在没有任务时处于休眠状态下；从App层面上来看，一般app处于前台那么就会处于执行任务的状态；app处于后台那么就会处于休眠状态；从代码层面上来看，我们都知道一个App可以看成一个进程，而进程的最小单位是线程，每个线程在执行完后是会退出的。那么Runloop这样的运行模式与线程之间的关系就很好理解了。</p>
+<a id="more"></a> 
 <h3 id="事件源"><a href="#事件源" class="headerlink" title="事件源"></a>事件源</h3><p>Runloop会处理两大类事件源：TimerSource与InputSource<br>a.InputSource包括performSelector方法簇，Port或者自定义的InputSource<br>b.每个事件源都会绑定在Runloop的某个mode上，并且只有Runloop运行在该mode下才会触发该Timer或者InputSource<br>c.如果没有任何输入源添加到Runloop，那么Runloop就会退出</p>
 <p>ps: 很好区分source0 和source1 的点是，能够外部唤起Runloop 的source 都是source1；</p>
 <h3 id="Runloop-Mode"><a href="#Runloop-Mode" class="headerlink" title="Runloop Mode"></a>Runloop Mode</h3><p>苹果公开的Mode有两个：<br>a.KCFRunloopDefaultModel(NSDefaultRunloopMode)：默认的Mode，除了NSConnection对象的事件<br>b.UITrackinRunloopModel，用于跟踪触摸事件触发的模式<br>c.同时苹果还提供一个Common 标记的字符串:kCFRunloopCommonModes(NSRunloopCommonModes)，你可以使用这个字符串来操作Common items，或标记一个Mode 为Common<br>d.GSEventReceiveRunloopMode：用于接收系统事件，属于内部的Runloop模式<br>f.自定义Mode：可以设置自定义的运行Mode</p>

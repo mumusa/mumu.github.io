@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://mumusa.github.io/year/05/05/常用的Block浅析/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
-<meta property="og:updated_time" content="2017-06-03T06:59:59.000Z">
+<meta property="og:updated_time" content="2017-06-09T01:31:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的Block浅析">
 <meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的block是否捕获了外部变量。随着不断的找资料，有了以下几层理解   Block类型反推如果我们知道block的类型那么不就可以清楚是否需要注意循环引用的问题啦，看起来很有道理是不是；可是在后续的测试中，我发现block的类型是会变的，   全局block  typedef int(^">
@@ -106,7 +106,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -317,6 +317,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -518,6 +540,15 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
           
             
@@ -645,6 +676,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     

@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://mumusa.github.io/year/05/29/Runloop笔记/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="开篇关于Runloop的一点笔记 基本介绍Runloop本质是一个‘do while’循环，解决的问题就是让程序在接受到任务时就开始执行任务，在没有任务时处于休眠状态下；从App层面上来看，一般app处于前台那么就会处于执行任务的状态；app处于后台那么就会处于休眠状态；从代码层面上来看，我们都知道一个App可以看成一个进程，而进程的最小单位是线程，每个线程在执行完后是会退出的。那么Runloop">
-<meta property="og:updated_time" content="2017-06-03T06:58:53.000Z">
+<meta property="og:updated_time" content="2017-06-09T01:37:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runloop笔记">
 <meta name="twitter:description" content="开篇关于Runloop的一点笔记 基本介绍Runloop本质是一个‘do while’循环，解决的问题就是让程序在接受到任务时就开始执行任务，在没有任务时处于休眠状态下；从App层面上来看，一般app处于前台那么就会处于执行任务的状态；app处于后台那么就会处于休眠状态；从代码层面上来看，我们都知道一个App可以看成一个进程，而进程的最小单位是线程，每个线程在执行完后是会退出的。那么Runloop">
@@ -106,7 +106,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -317,6 +317,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -512,6 +534,15 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
           
             
@@ -639,6 +670,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     

@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://mumusa.github.io/year/06/10/AutoreleasePool-浅析/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="摘要从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。 首先看一段代码123456789- (void)test &amp;#123;    @autoreleasepool &amp;#123;        for (NSInteger i = 0">
-<meta property="og:updated_time" content="2017-06-10T04:20:26.000Z">
+<meta property="og:updated_time" content="2017-07-12T06:28:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AutoreleasePool 浅析">
 <meta name="twitter:description" content="摘要从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。 首先看一段代码123456789- (void)test &amp;#123;    @autoreleasepool &amp;#123;        for (NSInteger i = 0">
@@ -382,7 +382,8 @@
 <blockquote>
 <p>1.基于非UI Framework的程序<br>2.会创建很多临时对象<br>3.开辟第二线程</p>
 </blockquote>
-<p>上面的代码中用到了UIKit Framework，违背了第一个要素，这段代码肯定是有问题的，运行起来会因为UI 对象无法释放导致内存暴涨；那么为什么会导致无法释放呢，</p>
+<p>上面的代码中用到了UIKit Framework，违背了第一个要素，这段代码肯定是有问题的，运行起来会因为UI 对象无法释放导致内存暴涨；那么为什么会导致无法释放呢，(ps:曾经在测试的时候，上面示例代码中打印string，label的地址结果是，string的结果是永远一致，label的地址在开始的循环中是一致，后面就开始不一致)，由此可以很直观的推断出造成内存持续增长的原因是分配的内存来不及释放。</p>
+<p>但是一个多月之后，再次测试上述示例时得到的结果缺让人很迷惑，临时创建的string，label，button，打印出来的地址都是指向同一块内存区域，</p>
 
       
     </div>

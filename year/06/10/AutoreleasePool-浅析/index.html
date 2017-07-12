@@ -87,17 +87,19 @@
 
 
 
-<meta name="description" content="摘要从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。 首先看一段代码123456789- (void)test &amp;#123;    @autoreleasepool &amp;#123;        for (NSInteger i = 0">
+<meta name="description" content="摘要话要从一段代码说起，以下是从网上看到的一道面试题，先简单的说一下结果，这段代码是有问题的，Xcode上运行的结果是在循环期间模拟器的内存会持续增长，CPU飙升，在循环结束后内存释放掉一部分。那么对于这种现象，我带着疑问来探究AutoreleasePool的实现原理。  1、为什么如果有UI对象会造成内存持续增长，而Foundation 内的对象不会呢？2、AutoreleasePool是在什么">
 <meta name="keywords" content="AutoreleasePool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AutoreleasePool 浅析">
 <meta property="og:url" content="http://mumusa.github.io/year/06/10/AutoreleasePool-浅析/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
-<meta property="og:description" content="摘要从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。 首先看一段代码123456789- (void)test &amp;#123;    @autoreleasepool &amp;#123;        for (NSInteger i = 0">
-<meta property="og:updated_time" content="2017-07-12T06:28:29.000Z">
+<meta property="og:description" content="摘要话要从一段代码说起，以下是从网上看到的一道面试题，先简单的说一下结果，这段代码是有问题的，Xcode上运行的结果是在循环期间模拟器的内存会持续增长，CPU飙升，在循环结束后内存释放掉一部分。那么对于这种现象，我带着疑问来探究AutoreleasePool的实现原理。  1、为什么如果有UI对象会造成内存持续增长，而Foundation 内的对象不会呢？2、AutoreleasePool是在什么">
+<meta property="og:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/10/AutoreleasePool-%E6%B5%85%E6%9E%90/autoreleasepool_1.png">
+<meta property="og:updated_time" content="2017-07-12T07:02:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AutoreleasePool 浅析">
-<meta name="twitter:description" content="摘要从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。 首先看一段代码123456789- (void)test &amp;#123;    @autoreleasepool &amp;#123;        for (NSInteger i = 0">
+<meta name="twitter:description" content="摘要话要从一段代码说起，以下是从网上看到的一道面试题，先简单的说一下结果，这段代码是有问题的，Xcode上运行的结果是在循环期间模拟器的内存会持续增长，CPU飙升，在循环结束后内存释放掉一部分。那么对于这种现象，我带着疑问来探究AutoreleasePool的实现原理。  1、为什么如果有UI对象会造成内存持续增长，而Foundation 内的对象不会呢？2、AutoreleasePool是在什么">
+<meta name="twitter:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/10/AutoreleasePool-%E6%B5%85%E6%9E%90/autoreleasepool_1.png">
 
 
 
@@ -375,7 +377,10 @@
       
 
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>话要从一段代码说起，以下是从网上看到的一道面试题，先简单的说一下结果，这段代码是有问题的，Xcode上运行的结果是在循环期间模拟器的内存会持续增长，CPU飙升，在循环结束后内存释放掉一部分。那么对于这种现象，我带着疑问来探究AutoreleasePool的实现原理。</p>
+<blockquote>
+<p>1、为什么如果有UI对象会造成内存持续增长，而Foundation 内的对象不会呢？<br>2、AutoreleasePool是在什么时候release 对象的?</p>
+</blockquote>
 <p>首先看一段代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)test &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        <span class="keyword">for</span> (NSInteger i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</div><div class="line">            UILabel *label = [UILabel <span class="keyword">new</span>];</div><div class="line">            NSString *<span class="built_in">string</span> = [[NSString alloc] init];</div><div class="line">            UIButton *button = [[UIButton alloc] init];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>如果你看过官方文档 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html#//apple_ref/doc/uid/20000047-CJBFBEDI" target="_blank" rel="external">Using Autorelease Pool Blocks</a> 当中有提到几种使用Autorelease Pool Blocks的情况</p>
@@ -383,7 +388,8 @@
 <p>1.基于非UI Framework的程序<br>2.会创建很多临时对象<br>3.开辟第二线程</p>
 </blockquote>
 <p>上面的代码中用到了UIKit Framework，违背了第一个要素，这段代码肯定是有问题的，运行起来会因为UI 对象无法释放导致内存暴涨；那么为什么会导致无法释放呢，(ps:曾经在测试的时候，上面示例代码中打印string，label的地址结果是，string的结果是永远一致，label的地址在开始的循环中是一致，后面就开始不一致)，由此可以很直观的推断出造成内存持续增长的原因是分配的内存来不及释放。</p>
-<p>但是一个多月之后，再次测试上述示例时得到的结果缺让人很迷惑，临时创建的string，label，button，打印出来的地址都是指向同一块内存区域，</p>
+<p>但是一个多月之后，再次测试上述示例时得到的结果缺让人很迷惑，临时创建的string，label，button，打印出来的地址却都是指向同一块内存区域<br><img src="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/10/AutoreleasePool-%E6%B5%85%E6%9E%90/autoreleasepool_1.png" alt="autoreleasepool_1"></p>
+<p>这样的结果是让人有些斯巴达的。搜索一圈大神的各种分析博客之后，菜鸡如我，无法从源码的角度去理解<code>AutoreleasePoolPage</code>、<code>objc_autoreleasePoolPush</code>、<code>objc_autoreleasePoolPop</code>这些概念，因为从中很难准确的找到一条线去解释，为什么AutoreleasePool需要采用这样的设计，</p>
 
       
     </div>

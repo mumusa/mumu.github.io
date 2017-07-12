@@ -651,7 +651,10 @@
 
       
         
-          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从字面上的意思来看，AutoreleasePool 是自动释放池的意思，在这个池子里去管理里面对象的内存，在没有ARC的时候，我们通过autorelease 消息来处理，在ARC时代，系统会自动帮我们处理这些事情。</p>
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>话要从一段代码说起，以下是从网上看到的一道面试题，先简单的说一下结果，这段代码是有问题的，Xcode上运行的结果是在循环期间模拟器的内存会持续增长，CPU飙升，在循环结束后内存释放掉一部分。那么对于这种现象，我带着疑问来探究AutoreleasePool的实现原理。</p>
+<blockquote>
+<p>1、为什么如果有UI对象会造成内存持续增长，而Foundation 内的对象不会呢？<br>2、AutoreleasePool是在什么时候release 对象的?</p>
+</blockquote>
 <p>首先看一段代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)test &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        <span class="keyword">for</span> (NSInteger i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</div><div class="line">            UILabel *label = [UILabel <span class="keyword">new</span>];</div><div class="line">            NSString *<span class="built_in">string</span> = [[NSString alloc] init];</div><div class="line">            UIButton *button = [[UIButton alloc] init];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">

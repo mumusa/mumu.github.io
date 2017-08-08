@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="写在开头首先从五层协议谈起吧">
 <meta property="og:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/16/%E5%9B%BE%E8%A7%A3HTTP%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/tcp_ip_1.png?raw=true">
-<meta property="og:updated_time" content="2017-07-13T11:03:23.000Z">
+<meta property="og:updated_time" content="2017-08-08T10:43:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解HTTP读书笔记">
 <meta name="twitter:description" content="写在开头首先从五层协议谈起吧">
@@ -390,6 +390,12 @@
 <blockquote>
 <p>http: // user:pass    @    www.example.jp:    80   /dir/index.html ?    uid=1#       chl<br>协议方案名        登录信息         服务器地址  端口     带层次的文件路径   查询字符串     片段标识符</p>
 </blockquote>
+<h3 id="TCP-amp-amp-UDP"><a href="#TCP-amp-amp-UDP" class="headerlink" title="TCP &amp;&amp; UDP"></a>TCP &amp;&amp; UDP</h3><p>要谈TCP／UDP，我们可以先来看看socket，作为进程通信机制，通常被称为套接字，用于描述IP地址和端口，是一个通信链的句柄，为了更好的理解socket的工作原理，可以以一个电话网为例，打电话与接电话的双发相当于相互通信的2个程序，电话号码可以当作是两者的IP地址。任何用户在打电话的时候肯定需要一部电话，<strong><em>相当于申请一个socket</em></strong>；同时要知道对方的电话号码（IP地址），相当于对方有一个固定的socket。然后给对方拨号呼叫，相当于发出连接请求，如果对方在场并空闲，拿起电话话筒，双发就可以正式通话，相当于连接成功，通话过程相当于向socket发送数据和从socket接收数据，通话结束后，挂断电话的操作相当于关闭socket，撤销连接，通信完成。</p>
+<p>以上主要说了socket的工作流，那TCP／UDP又是干什么的呢？且听我慢慢道来，如果某一天你接到一个俄罗斯兄弟的电话，一个说俄语，一个说中文，这交流起来就有些鸡同鸭讲，完全不知所云了吧。但是如果我们给一个规定，要求通信的双方都必须说普通话，那么沟通起来就没有障碍啦，这就引出通信协议（TCP／UDP）来啦</p>
+<blockquote>
+<p>*TCP 是一种流模式的协议，面向连接，传输可靠，用于传输大量数据、速度相对UDP来说较慢</p>
+<p>*UDP 是一种数据报模式的协议，无连接服务应用，不安全（丢包，顺序混乱，在接收端要分析重排以及要求重发），但是效率高</p>
+</blockquote>
 
       
     </div>
@@ -523,7 +529,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -545,7 +551,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -614,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开头"><span class="nav-number">1.</span> <span class="nav-text">写在开头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP"><span class="nav-number">1.1.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-amp-amp-URI"><span class="nav-number">1.2.</span> <span class="nav-text">URL && URI</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开头"><span class="nav-number">1.</span> <span class="nav-text">写在开头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP"><span class="nav-number">1.1.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-amp-amp-URI"><span class="nav-number">1.2.</span> <span class="nav-text">URL && URI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-amp-amp-UDP"><span class="nav-number">1.3.</span> <span class="nav-text">TCP && UDP</span></a></li></ol></li></ol></div>
             
 
           </div>

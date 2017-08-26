@@ -94,12 +94,12 @@
 <meta property="og:url" content="http://mumusa.github.io/year/08/26/从UI入手逆向分析App/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="开篇曾经我还是一名开发仔的时候(现在也还是一个开发仔啦  _&amp;lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。">
-<meta property="og:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif">
-<meta property="og:updated_time" content="2017-08-26T09:42:36.000Z">
+<meta property="og:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif?raw=true">
+<meta property="og:updated_time" content="2017-08-26T09:47:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从UI入手逆向分析App">
 <meta name="twitter:description" content="开篇曾经我还是一名开发仔的时候(现在也还是一个开发仔啦  _&amp;lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。">
-<meta name="twitter:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif">
+<meta name="twitter:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif?raw=true">
 
 
 
@@ -380,7 +380,7 @@
         <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>曾经我还是一名开发仔的时候(现在也还是一个开发仔啦  _&lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。</p>
 <a id="more"></a>
 <p>首先看一下渣浪的UI开开胃：</p>
-<p><img src="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif" alt="demo"></p>
+<p><img src="https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif?raw=true" alt="demo"></p>
 <p>Reveal是什么想必大家也都知道，不知道也可以自行搜索了解，用Reveal的需要有两个前提条件：</p>
 <p>1、App要是自己的；</p>
 <p>2、真机调试是需要将动态库注入程序的；</p>
@@ -389,7 +389,8 @@
 <p>在本案例中Reveal是不需要自己配置的，单独运用到其他项目中大家可以自行搜索。</p>
 <h3 id="2-IPA下载"><a href="#2-IPA下载" class="headerlink" title="2.IPA下载"></a>2.IPA下载</h3><p>这一步相对来说比轻松，如果你图方便可以直接在PP助手里下载已经砸壳的IPA文件，或者你喜欢自己动手亲自砸壳也未尝不可。</p>
 <h3 id="3-安装MonkeyDev"><a href="#3-安装MonkeyDev" class="headerlink" title="3.安装MonkeyDev"></a>3.安装MonkeyDev</h3><p>跟着MonkeyDev的wiki一步步走就可以安装好。主要用到的命令行有：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sudo git clone --recursive https://github.com/theos/theos/git   /opt/theos</div><div class="line">  </div><div class="line">brew install ldid</div><div class="line">  </div><div class="line">git clone https://github.com/AloneMonkey/MonkeyDev.git</div><div class="line">  </div><div class="line">cd MonkeyDev/bin</div><div class="line">  </div><div class="line">sudo ./md-install</div><div class="line">  </div><div class="line">ps:默认clone的路径为Finder中的个人(Home)，没有安装HomeBrew的童鞋可以用</div><div class="line"></div><div class="line">ruby -e"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">sudo git clone --recursive https://github.com/theos/theos/git   /opt/theos</div><div class="line">  </div><div class="line">brew install ldid</div><div class="line">  </div><div class="line">git clone https://github.com/AloneMonkey/MonkeyDev.git</div><div class="line">  </div><div class="line">cd MonkeyDev/bin</div><div class="line">  </div><div class="line">sudo ./md-install</div><div class="line">  </div><div class="line">ruby -e"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</div></pre></td></tr></table></figure>
+<p>ps:默认clone的路径为Finder中的个人(Home)，没有安装HomeBrew的童鞋可以用</p>
 <p>需要注意有两点：</p>
 <p>1、要用自己的Provisioning Profile；</p>
 <p>2、要用真机运行，第一次运行会提示Build failed，没关系的，继续Run就可以成功。</p>

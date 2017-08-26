@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Objective-C," />
+  <meta name="keywords" content="逆向 Reveal," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="摘要拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在这里。 不过在后续的测试中发现，BigBang 无法 hook 系统Framework中的类，从功">
-<meta name="keywords" content="Objective-C">
+<meta name="description" content="开篇曾经我还是一名开发仔的时候(现在也还是一个开发仔啦&amp;gt;_&amp;lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。 首先看一下渣浪的UI开开胃： ![demo] Reveal是什么想必大家也都知道，不知道也可以自">
+<meta name="keywords" content="逆向 Reveal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BigBang源码分析">
-<meta property="og:url" content="http://mumusa.github.io/year/07/10/BigBang源码分析/index.html">
+<meta property="og:title" content="从UI入手逆向分析App">
+<meta property="og:url" content="http://mumusa.github.io/year/08/26/从UI入手逆向分析App/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
-<meta property="og:description" content="摘要拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在这里。 不过在后续的测试中发现，BigBang 无法 hook 系统Framework中的类，从功">
-<meta property="og:updated_time" content="2017-07-19T08:17:31.000Z">
+<meta property="og:description" content="开篇曾经我还是一名开发仔的时候(现在也还是一个开发仔啦&amp;gt;_&amp;lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。 首先看一下渣浪的UI开开胃： ![demo] Reveal是什么想必大家也都知道，不知道也可以自">
+<meta property="og:updated_time" content="2017-08-26T09:30:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BigBang源码分析">
-<meta name="twitter:description" content="摘要拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在这里。 不过在后续的测试中发现，BigBang 无法 hook 系统Framework中的类，从功">
+<meta name="twitter:title" content="从UI入手逆向分析App">
+<meta name="twitter:description" content="开篇曾经我还是一名开发仔的时候(现在也还是一个开发仔啦&amp;gt;_&amp;lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。 首先看一下渣浪的UI开开胃： ![demo] Reveal是什么想必大家也都知道，不知道也可以自">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://mumusa.github.io/year/07/10/BigBang源码分析/"/>
+  <link rel="canonical" href="http://mumusa.github.io/year/08/26/从UI入手逆向分析App/"/>
 
 
 
 
 
-  <title> BigBang源码分析 | 张东帅小菜地 </title>
+  <title> 从UI入手逆向分析App | 张东帅小菜地 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/07/10/BigBang源码分析/">
+    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/08/26/从UI入手逆向分析App/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张东帅">
@@ -291,7 +291,7 @@
             
             
               
-                BigBang源码分析
+                从UI入手逆向分析App
               
             
           </h1>
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T11:52:59+08:00">
-                2017-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T17:25:19+08:00">
+                2017-08-26
               </time>
             
 
@@ -347,9 +347,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/year/07/10/BigBang源码分析/#comments" itemprop="discussionUrl">
+                <a href="/year/08/26/从UI入手逆向分析App/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="year/07/10/BigBang源码分析/" itemprop="commentCount"></span>
+                        data-disqus-identifier="year/08/26/从UI入手逆向分析App/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,44 +375,39 @@
       
 
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在<a href="https://github.com/codesourse/BigBang" target="_blank" rel="external">这里</a>。</p>
-<p>不过在后续的测试中发现，BigBang 无法 <strong>hook</strong> <code>系统Framework</code>中的类，从功能层面上来看还是需要完善的，但是不妨碍我们学习当中消息转发、方法拦截的一些知识。</p>
-<a id="more"></a>
-<p>BigBang整个项目的源码不足三百行，用起来也很简单，只需要调用以下的类方法，就可以实时查看当前运行时调用的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (void)hookClass:(NSString *)className;</div></pre></td></tr></table></figure></p>
-<p>这个方法里面主要是通过<code>&lt;objc/runtime.h&gt;</code>里面的方法获取hook 类的方法列表。BigBang 的主要思路是通过消息转发来hook 出观察类的方法名，那么我们可以先来了解什么是消息转发机制。</p>
-<p>大家都说OC 是一门动态性很强的语言，而运行时(runtime)就是这一特性的基石。OC中转发消息的方案有三种:</p>
-<ul>
-<li><p>方案一</p>
+        <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>曾经我还是一名开发仔的时候(现在也还是一个开发仔啦&gt;_&lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。</p>
+<p>首先看一下渣浪的UI开开胃：</p>
+<p>![demo]</p>
+<p>Reveal是什么想必大家也都知道，不知道也可以自行搜索了解，用Reveal的需要有两个前提条件：</p>
+<p>1、App要是自己的；</p>
+<p>2、真机调试是需要将动态库注入程序的；</p>
+<p>那么如果有这么一个超强的工具，将已经砸壳的ipa文件进行重签名并且将Reveal的动态库放到本地的工程里面重新生成.app格式文件，那这样是不是就满足上述两点，问题就迎刃而解啦。</p>
+<h2 id="开始动手"><a href="#开始动手" class="headerlink" title="开始动手"></a>开始动手</h2><h3 id="1-安装Reveal"><a href="#1-安装Reveal" class="headerlink" title="1.安装Reveal"></a>1.安装Reveal</h3><p>首先要去Reveal官网下载最新的试用版Reveal 10，目前市面上能搜到的破解版（Reveal1.6.3、Reveal 2、Reveal 4）都是不能用的，还是老实点用试用版吧(如果你是逆向大神自己动手绕过了验证，请务必联系我)，毕竟14天的也够用了。</p>
+<p>在本案例中Reveal是不需要自己配置的，单独运用到其他项目中大家可以自行搜索。</p>
+<h3 id="2-IPA下载"><a href="#2-IPA下载" class="headerlink" title="2.IPA下载"></a>2.IPA下载</h3><p>这一步相对来说比轻松，如果你图方便可以直接在PP助手里下载已经砸壳的IPA文件，或者你喜欢自己动手亲自砸壳也未尝不可。</p>
+<h3 id="3-安装MonkeyDev"><a href="#3-安装MonkeyDev" class="headerlink" title="3.安装MonkeyDev"></a>3.安装MonkeyDev</h3><p>跟着MonkeyDev的wiki一步步走就可以安装好。主要用到的命令行有：</p>
 <blockquote>
-<ul>
-<li>(BOOL)resolveClassMethod:(SEL)sel OBJC_AVAILABLE(10.5, 2.0, 9.0, 1.0);</li>
-<li>(BOOL)resolveInstanceMethod:(SEL)sel OBJC_AVAILABLE(10.5, 2.0, 9.0, 1.0);</li>
-</ul>
+<p>sudo git clone –recursive <a href="https://github.com/theos/theos/git" target="_blank" rel="external">https://github.com/theos/theos/git</a>   /opt/theos</p>
+<p>brew install ldid</p>
+<p>git clone <a href="https://github.com/AloneMonkey/MonkeyDev.git" target="_blank" rel="external">https://github.com/AloneMonkey/MonkeyDev.git</a></p>
+<p>cd MonkeyDev/bin</p>
+<p>sudo ./md-install</p>
+<p>ps:默认clone的路径为Finder中的个人(Home)，没有安装HomeBrew的童鞋可以用</p>
+<p>ruby -e”$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</p>
 </blockquote>
-</li>
-<li><p>方案二</p>
-<blockquote>
-<ul>
-<li>(id)forwardingTargetForSelector:(SEL)aSelector OBJC_AVAILABLE(10.5, 2.0, 9.0, 1.0);</li>
-</ul>
-</blockquote>
-</li>
-<li><p>方案三</p>
-<blockquote>
-<ul>
-<li>(void)forwardInvocation:(NSInvocation *)invocation;</li>
-<li>(nullable NSMethodSignature *)methodSignatureForSelector:(SEL)sel NS_SWIFT_UNAVAILABLE(“NSInvocation and related APIs not available”);</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<hr>
-<p>下面说一下这三套方案是怎么调用的</p>
-<p><strong>方案一</strong><br>方案一的调用顺序在三个方案中优先级最高的，它的作用就是当某个类或者对象直接调用一个未实现的方法时，如果返回默认NO那会报出<code>- [Class xxx] :unrecognized selector sent to instance</code>的错误；如果返回YES，那么九相当于给了该方法一次重新做人的机会 &gt;_&lt;，如下面例子中通过runtime提供的接口将该方法的IMP 绑定一下，避免了crash。<br>instance对应的是转发成员方法，classMethod对应的是转发类方法；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">void run (id self, SEL _cmd) &#123;</div><div class="line">    NSLog(@&quot;%@ %s&quot;, self, sel_getName(_cmd));</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel &#123;</div><div class="line">    if (sel == @selector(run)) &#123;</div><div class="line">        class_addMethod(self, sel, (IMP)run, &quot;v@:&quot;);</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">    return [super resolveInstanceMethod:sel];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>方案二</strong><br>方案二的思路比较偷懒一点，直接返回一个已经实现了该方法的对象来让处理该SEL，好比说你开了一家店卖早点，顾给了个整100，但是刚好早上生意好没零钱了，这时候你怎么办呢，一种就是损失了一次赚钱的机会（程序崩溃），再一种是不是可以去看下隔壁店破个零钱回来呢（转到有零钱的那家店）。那这里有零钱的就是有实现该SEL的类了。<br>具体用法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (id)forwardingTargetForSelector:(SEL)aSelector &#123;</div><div class="line">    retrun [aClass new];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>方案三</strong><br>方案三的思路就比较全面一点，去年很火热的JSPatch里面JS-OC互调就是应用了方案三的方法，这个方案的调用是在方案一与方案二都没有自定义的时候才会调用，NSMethodSignature这个类个人的理解是将Method封装在内部，而NSInvocation 则是将objc_msgSend(reciver, msg)中的reciver关联起来的，一起组成了一次完整的方法调用。<br>具体用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector &#123;</div><div class="line">    NSString *sel = NSSelectorFromString(selector);</div><div class="line">    if([sel isEqualToString:@&quot;run&quot;]) &#123;</div><div class="line">        return [NSMethodSignature signatureWithObjecCTypes:&quot;v@:&quot;];</div><div class="line">    &#125;</div><div class="line">    return [super methodSignatureForSelector:selector];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)forwardInvocation:(NSInvocation *)invocation &#123;</div><div class="line">    SEL selector = [invocation selector];</div><div class="line">    Car *car = [Car new];</div><div class="line">    if([car responseToSelector:@selector(run)]) &#123;</div><div class="line">        [invocation invokeWithTarget:car];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>ps: 关于后面的类型”v@:” 解释一下，每一个方法有两个默认参数<code>self、_cmd</code>，前者表示方法的调用者(消息的接受者),后者表示这个方法的SEL，签名类型就是用来描述这个方法的返回值、参数的，v 表示void，self 表示@，：表示_cmd。</p>
+<p>需要注意有两点：</p>
+<p>1、要用自己的Provisioning Profile；</p>
+<p>2、要用真机运行，第一次运行会提示Build failed，没关系的，继续Run就可以成功。</p>
+<p>ps: wiki里面提到MonkeyDev用的是最新版Reveal动态库，如果想用其他版本的可以自己更换Reveal的动态库，但是在测试的工程发现，有些版本的Reval直接是no connect，有些版本在最终查看UI的时候会提示需要更新，在此也说明一下。</p>
+<p>这里扯开谈一下，一个砸壳的App重新安装到你自己的设备上同时可以用Reveal查看需要这么几个步骤：</p>
+<p>1、将Cycript.framework注入到xxx.app中</p>
+<p>2、将RevealServer.framework注入到xxx.app中</p>
+<p>3、对其进行重签名</p>
+<p>同时，在实际使用过程中我测试了各大厂的产品，除了蚂蚁家某宝存在启动闪退外，其他项目均可以正常使用（猪厂的云音乐做了重签名验证无法显示数据），从准确性、上手程度上来讲MonkeyDev算是站在巨人的肩膀上的一个好作品。</p>
+<p>另外，关于重签名的项目像iOSAppHook、EasyResign、iReSign。都提供了重签名的功能，大家可自行测试。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如果说把一个App比做一座房子，了解了UI就相当于最直观的明白了这座房子是什么一个架构，哪一个模块是什么结构，至于内部业务逻辑是怎么运转都可以循着UI的变动去找到蛛丝马迹，反过来如果你想依照逻辑来设计UI其实也可以成立的。只不过对我而言，单纯通过反编译出来的代码来理清一个App的架构太过痛苦来。</p>
+<p>最后，如果大家有更好的想法，欢迎<a href="https://github.com/mumuno" target="_blank" rel="external">联系我</a></p>
+<p>声明：文中示例仅作为学习交流用，不用于任何商业用途，否则后果自负。</p>
 
       
     </div>
@@ -442,7 +437,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+            <a href="/tags/逆向-Reveal/" rel="tag"># 逆向 Reveal</a>
           
         </div>
       
@@ -455,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/year/06/16/图解HTTP读书笔记/" rel="next" title="图解HTTP读书笔记">
-                <i class="fa fa-chevron-left"></i> 图解HTTP读书笔记
+              <a href="/year/08/23/八月不得安生/" rel="next" title="八月不得安生">
+                <i class="fa fa-chevron-left"></i> 八月不得安生
               </a>
             
           </div>
@@ -464,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/year/08/05/函数式编程/" rel="prev" title="函数式编程">
-                函数式编程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -637,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始动手"><span class="nav-number">2.</span> <span class="nav-text">开始动手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Reveal"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Reveal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-IPA下载"><span class="nav-number">2.2.</span> <span class="nav-text">2.IPA下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装MonkeyDev"><span class="nav-number">2.3.</span> <span class="nav-text">3.安装MonkeyDev</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
 
           </div>
@@ -776,9 +767,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mumusa.github.io/year/07/10/BigBang源码分析/';
-          this.page.identifier = 'year/07/10/BigBang源码分析/';
-          this.page.title = 'BigBang源码分析';
+          this.page.url = 'http://mumusa.github.io/year/08/26/从UI入手逆向分析App/';
+          this.page.identifier = 'year/08/26/从UI入手逆向分析App/';
+          this.page.title = '从UI入手逆向分析App';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiaodong.disqus.com/embed.js';

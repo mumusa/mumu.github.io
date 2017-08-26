@@ -381,26 +381,38 @@
       
         
           
-            <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>曾经我还是一名开发仔的时候(现在也还是一个开发仔啦&gt;_&lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。</p>
-<p>首先看一下渣浪的UI开开胃：</p>
-<p>![demo]</p>
-<p>Reveal是什么想必大家也都知道，不知道也可以自行搜索了解，用Reveal的需要有两个前提条件：</p>
-<p>1、App要是自己的；</p>
-<p>2、真机调试是需要将动态库注入程序的；</p>
-<p>那么如果有这么一个超强的工具，将已经砸壳的ipa文件进行重签名并且将Reveal的动态库放到本地的工程里面重新生成.app格式文件，那这样是不是就满足上述两点，问题就迎刃而解啦。</p>
-<h2 id="开始动手"><a href="#开始动手" class="headerlink" title="开始动手"></a>开始动手</h2><h3 id="1-安装Reveal"><a href="#1-安装Reveal" class="headerlink" title="1.安装Reveal"></a>1.安装Reveal</h3><p>首先要去Reveal官网下载最新的试用版Reveal 10，目前市面上能搜到的破解版（Reveal1.6.3、Reveal 2、Reveal 4）都是不能用的，还是老实点用试用版吧(如果你是逆向大神自己动手绕过了验证，请务必联系我)，毕竟14天的也够用了。</p>
-<p>在本案例中Reveal是不需要自己配置的，单独运用到其他项目中大家可以自行搜索。</p>
-<h3 id="2-IPA下载"><a href="#2-IPA下载" class="headerlink" title="2.IPA下载"></a>2.IPA下载</h3><p>这一步相对来说比轻松，如果你图方便可以直接在PP助手里下载已经砸壳的IPA文件，或者你喜欢自己动手亲自砸壳也未尝不可。</p>
-<h3 id="3-安装MonkeyDev"><a href="#3-安装MonkeyDev" class="headerlink" title="3.安装MonkeyDev"></a>3.安装MonkeyDev</h3><p>跟着MonkeyDev的wiki一步步走就可以安装好。主要用到的命令行有：</p>
-<blockquote>
-<p>sudo git clone –recursive <a href="https://github.com/theos/theos/git" target="_blank" rel="external">https://github.com/theos/theos/git</a>   /opt/theos</p>
-<p>brew install ldid</p>
-<p>git clone <a href="https://github.com/AloneMonkey/MonkeyDev.git" target="_blank" rel="external">https://github.com/AloneMonkey/MonkeyDev.git</a></p>
-<p>cd MonkeyDev/bin</p>
-<p>sudo ./md-install</p>
-<p>ps:默认clone的路径为Finder中的个人(Home)，没有安装HomeBrew的童鞋可以用</p>
-<p>ruby -e”$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”</p>
-</blockquote>
+            <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>曾经我还是一名开发仔的时候(现在也还是一个开发仔啦  _&lt;)，对各大厂的App产品有着很强的好奇心的，但苦于手边没有合适的越狱设备，心愿一直没能达成。就在昨天发现了一个神器，可以满足你一窥优秀产品UI结构的愿望，想想都敲开心对不对，反正昨天我是折腾了一整天，把感兴趣产品的UI都看了一遍。</p>
+<!-- more --  
+
+首先看一下渣浪的UI开开胃：
+
+![demo](https://github.com/mumusa/mumusa.github.io/blob/master/year/08/26/%E4%BB%8EUI%E5%85%A5%E6%89%8B%E9%80%86%E5%90%91%E5%88%86%E6%9E%90App/demo.gif)
+
+Reveal是什么想必大家也都知道，不知道也可以自行搜索了解，用Reveal的需要有两个前提条件：
+
+1、App要是自己的；
+
+2、真机调试是需要将动态库注入程序的；
+
+那么如果有这么一个超强的工具，将已经砸壳的ipa文件进行重签名并且将Reveal的动态库放到本地的工程里面重新生成.app格式文件，那这样是不是就满足上述两点，问题就迎刃而解啦。
+
+## 开始动手
+
+### 1.安装Reveal
+
+首先要去Reveal官网下载最新的试用版Reveal 10，目前市面上能搜到的破解版（Reveal1.6.3、Reveal 2、Reveal 4）都是不能用的，还是老实点用试用版吧(如果你是逆向大神自己动手绕过了验证，请务必联系我)，毕竟14天的也够用了。
+
+在本案例中Reveal是不需要自己配置的，单独运用到其他项目中大家可以自行搜索。
+
+### 2.IPA下载
+
+这一步相对来说比轻松，如果你图方便可以直接在PP助手里下载已经砸壳的IPA文件，或者你喜欢自己动手亲自砸壳也未尝不可。
+
+### 3.安装MonkeyDev
+
+跟着MonkeyDev的wiki一步步走就可以安装好。主要用到的命令行有：
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sudo git clone --recursive https://github.com/theos/theos/git   /opt/theos</div><div class="line">  </div><div class="line">brew install ldid</div><div class="line">  </div><div class="line">git clone https://github.com/AloneMonkey/MonkeyDev.git</div><div class="line">  </div><div class="line">cd MonkeyDev/bin</div><div class="line">  </div><div class="line">sudo ./md-install</div><div class="line">  </div><div class="line">ps:默认clone的路径为Finder中的个人(Home)，没有安装HomeBrew的童鞋可以用</div><div class="line"></div><div class="line">ruby -e"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</div></pre></td></tr></table></figure>
 <p>需要注意有两点：</p>
 <p>1、要用自己的Provisioning Profile；</p>
 <p>2、要用真机运行，第一次运行会提示Build failed，没关系的，继续Run就可以成功。</p>
@@ -412,9 +424,9 @@
 <p>同时，在实际使用过程中我测试了各大厂的产品，除了蚂蚁家某宝存在启动闪退外，其他项目均可以正常使用（猪厂的云音乐做了重签名验证无法显示数据），从准确性、上手程度上来讲MonkeyDev算是站在巨人的肩膀上的一个好作品。</p>
 <p>另外，关于重签名的项目像iOSAppHook、EasyResign、iReSign。都提供了重签名的功能，大家可自行测试。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如果说把一个App比做一座房子，了解了UI就相当于最直观的明白了这座房子是什么一个架构，哪一个模块是什么结构，至于内部业务逻辑是怎么运转都可以循着UI的变动去找到蛛丝马迹，反过来如果你想依照逻辑来设计UI其实也可以成立的。只不过对我而言，单纯通过反编译出来的代码来理清一个App的架构太过痛苦来。</p>
-<p>最后，如果大家有更好的想法，欢迎<a href="https://github.com/mumuno" target="_blank" rel="external">联系我</a></p>
+<p>最后，如果大家有更好的想法，欢迎<a href="https://github.com/mumuno">联系我</a></p>
 <p>声明：文中示例仅作为学习交流用，不用于任何商业用途，否则后果自负。</p>
-
+-->
           
         
       

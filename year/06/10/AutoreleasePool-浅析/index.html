@@ -384,7 +384,7 @@
 </blockquote>
 <p>首先看一段代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)test &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        <span class="keyword">for</span> (NSInteger i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</span><br><span class="line">            UILabel *label = [UILabel <span class="keyword">new</span>];</span><br><span class="line">            NSString *<span class="built_in">string</span> = [[NSString alloc] init];</span><br><span class="line">            UIButton *button = [[UIButton alloc] init];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>如果你看过官方文档 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html#//apple_ref/doc/uid/20000047-CJBFBEDI" target="_blank" rel="external">Using Autorelease Pool Blocks</a> 当中有提到几种使用Autorelease Pool Blocks的情况</p>
+<p>如果你看过官方文档 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html#//apple_ref/doc/uid/20000047-CJBFBEDI" target="_blank" rel="noopener">Using Autorelease Pool Blocks</a> 当中有提到几种使用Autorelease Pool Blocks的情况</p>
 <blockquote>
 <p>1.基于非UI Framework的程序<br>2.会创建很多临时对象<br>3.开辟第二线程</p>
 </blockquote>
@@ -524,7 +524,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -546,7 +546,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -638,7 +638,7 @@
         <div class="copyright" >
   
   &copy;  危机纪元元年 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

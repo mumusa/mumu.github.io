@@ -272,6 +272,164 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/02/09/逃坑记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张东帅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张东帅小菜地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/year/02/09/逃坑记/" itemprop="url">
+                  逃坑记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T10:51:21+08:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/year/02/09/逃坑记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="year/02/09/逃坑记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>本文旨在记录最近遇到的一些问题与处理方案，还有一些处理非常规需求的脑洞。</p>
+<h2 id="WKWebView长按导致的问题"><a href="#WKWebView长按导致的问题" class="headerlink" title="WKWebView长按导致的问题"></a>WKWebView长按导致的问题</h2><p>如果项目是window -&gt; vc -&gt; present tabController这样一种结构，在tabController中有一个webView，长按网页会出现UIAlertController,这时候做任何操作都会导致 tabController直接dismiss，问题的诡异在于这个dismiss的方法无法调试。</p>
+<h2 id="监听ScrollView停止滚动"><a href="#监听ScrollView停止滚动" class="headerlink" title="监听ScrollView停止滚动"></a>监听ScrollView停止滚动</h2><p>在水群中看到某个小伙伴提出这样一个需求，在不用UIScrollViewDelegate的情况下如何知道ScrollView停止了滚动呢，很多人看到这里脑子里想到的第一个方案肯定是KVO,监听 contentOffset的值变化，然后通过新旧值的变化来判断是否停止滚动哈。</p>
+<p>这里我们先来谈谈ScrollView 停止滚动有多少种情况：<br>1、划一下，自然停止滚动；<br>2、当ScrollView正在快速滚动时，手指按住屏幕停止滚动；<br>3、手指不离开屏幕，慢速上下滑动停止。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)creatUIRunloopObserver:(CFOptionFlags)flag &#123;</span><br><span class="line">CFRunLoopRef runLoop = CFRunLoopGetCurrent();</span><br><span class="line">CFStringRef runLoopMode = (__bridge CFStringRef)UITrackingRunLoopMode;<span class="comment">//kCFRunLoopCommonModes;//kCFRunLoopDefaultMode;</span></span><br><span class="line">CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, flag, <span class="literal">true</span>, <span class="number">0</span>, ^(CFRunLoopObserverRef observer, CFRunLoopActivity _activity) &#123;</span><br><span class="line"><span class="comment">//NSLog(@"%@",(__bridge NSString *)runLoopMode);//NSDefaultRunLoopMode</span></span><br><span class="line"><span class="comment">//这是一个回调 即使这个方法不被调用，这个observer也会进行不断的回调，这里面就是runloop的运行过程</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (_activity) &#123;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopEntry: &#123;</span><br><span class="line"><span class="comment">//if (start == 0) start = CFAbsoluteTimeGetCurrent();</span></span><br><span class="line">NSLog(@<span class="string">"即将进入Loop"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeTimers: &#123;</span><br><span class="line">NSLog(@<span class="string">"即将处理 Timer"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeSources:</span><br><span class="line">NSLog(@<span class="string">"即将处理 Source"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeWaiting:</span><br><span class="line">NSLog(@<span class="string">"即将进入休眠"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopAfterWaiting:</span><br><span class="line">NSLog(@<span class="string">"刚从休眠中唤醒"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopExit:</span><br><span class="line">NSLog(@<span class="string">"UITracking 即将退出Loop"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">CFRunLoopAddObserver(runLoop, observer, runLoopMode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/11/13/Shell入门读书笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +518,7 @@
       
         
           
-            <h2 id="两个概念-shell-amp-amp-shell脚本"><a href="#两个概念-shell-amp-amp-shell脚本" class="headerlink" title="两个概念 shell &amp;&amp; shell脚本"></a>两个概念 shell &amp;&amp; shell脚本</h2><h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一种应用程序，这个程序提供一个洁面，用户通过这个界面访问操作系统内核的服务，sh 是一种Unix shell， WIndows Explore 是一个典型的图形界面</p>
+            <h2 id="两个概念-shell-amp-amp-shell脚本"><a href="#两个概念-shell-amp-amp-shell脚本" class="headerlink" title="两个概念 shell &amp;&amp; shell脚本"></a>两个概念 shell &amp;&amp; shell脚本</h2><h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一种应用程序，这个程序提供一个洁面，用户通过这个界面访问操作系统内核的服务，sh 是一种Unix shell， Windows Explore 是一个典型的图形界面</p>
 <h2 id="shell-脚本"><a href="#shell-脚本" class="headerlink" title="shell 脚本"></a>shell 脚本</h2><p>shell脚本(shell script) 是一种为shell 编写的脚本程序，通常所说的shell 通常是指shell 脚本</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>shell 编程和其他语言一样，只要有一个写代码的文本编辑器，还有一个解释执行脚本的解释器就可以了</p>
 <p>Mac OS不仅带有sh、bash 这两个最基本的解释器，还有ksh、csh、zsh等不常用的解释器</p>
@@ -999,7 +1157,7 @@
 
       
         
-          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在<a href="https://github.com/codesourse/BigBang" target="_blank" rel="external">这里</a>。</p>
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>拜读大神的代码是个人成长的一个重要途径，在这里也默默笔芯那些愿意开源的大神，作为一名小公司的开发人员，项目能带来的经验成长是有限的，而那些优秀的开源库总会给人以新的思路。但是面对这些动辄2-4w的代码量，阅读起来也是需要费一番功夫的，今天就分享一个分析源码时用到的工具类—BigBang，项目地址在<a href="https://github.com/codesourse/BigBang" target="_blank" rel="noopener">这里</a>。</p>
 <p>不过在后续的测试中发现，BigBang 无法 <strong>hook</strong> <code>系统Framework</code>中的类，从功能层面上来看还是需要完善的，但是不妨碍我们学习当中消息转发、方法拦截的一些知识。</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -2201,7 +2359,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2223,7 +2381,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2299,7 +2457,7 @@
         <div class="copyright" >
   
   &copy;  危机纪元元年 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

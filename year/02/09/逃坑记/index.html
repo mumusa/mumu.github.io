@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Markdown," />
+  <meta name="keywords" content="Bug 脑洞," />
 
 
 
@@ -87,20 +87,18 @@
 
 
 
-<meta name="description" content="问：写博客需要几步？第一步：博客建站第二步：写咯第三步：文章放上站点既然站点已经建好，那就来写吧，网上找了一圈，大伙推荐的工具都是Mou（免费）,Ulysses(付费)这些，免费的Mou不支持 OS10.12，手贱如我系统已经更新了，付费的想来也不太适合，那就用Xcode如何写md文件吧。顺便可以熟悉Markdown语法。💐（闲话）不说开始咯！">
-<meta name="keywords" content="Markdown">
+<meta name="description" content="开篇本文旨在记录最近遇到的一些问题与处理方案，还有一些处理非常规需求的脑洞。 WKWebView长按导致的问题如果项目是window -&amp;gt; vc -&amp;gt; present tabController这样一种结构，在tabController中有一个webView，长按网页会出现UIAlertController,这时候做任何操作都会导致 tabController直接dismiss，问题的">
+<meta name="keywords" content="Bug 脑洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时隔半年后的更新-Markdown基础写法">
-<meta property="og:url" content="http://mumusa.github.io/year/03/14/时隔半年后的更新-Markdown基础写法/index.html">
+<meta property="og:title" content="逃坑记">
+<meta property="og:url" content="http://mumusa.github.io/year/02/09/逃坑记/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
-<meta property="og:description" content="问：写博客需要几步？第一步：博客建站第二步：写咯第三步：文章放上站点既然站点已经建好，那就来写吧，网上找了一圈，大伙推荐的工具都是Mou（免费）,Ulysses(付费)这些，免费的Mou不支持 OS10.12，手贱如我系统已经更新了，付费的想来也不太适合，那就用Xcode如何写md文件吧。顺便可以熟悉Markdown语法。💐（闲话）不说开始咯！">
+<meta property="og:description" content="开篇本文旨在记录最近遇到的一些问题与处理方案，还有一些处理非常规需求的脑洞。 WKWebView长按导致的问题如果项目是window -&amp;gt; vc -&amp;gt; present tabController这样一种结构，在tabController中有一个webView，长按网页会出现UIAlertController,这时候做任何操作都会导致 tabController直接dismiss，问题的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/younghz/Markdown/master/resource/Aaron_Swartz.jpg">
-<meta property="og:updated_time" content="2017-08-26T11:48:15.000Z">
+<meta property="og:updated_time" content="2018-02-09T03:51:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时隔半年后的更新-Markdown基础写法">
-<meta name="twitter:description" content="问：写博客需要几步？第一步：博客建站第二步：写咯第三步：文章放上站点既然站点已经建好，那就来写吧，网上找了一圈，大伙推荐的工具都是Mou（免费）,Ulysses(付费)这些，免费的Mou不支持 OS10.12，手贱如我系统已经更新了，付费的想来也不太适合，那就用Xcode如何写md文件吧。顺便可以熟悉Markdown语法。💐（闲话）不说开始咯！">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/younghz/Markdown/master/resource/Aaron_Swartz.jpg">
+<meta name="twitter:title" content="逃坑记">
+<meta name="twitter:description" content="开篇本文旨在记录最近遇到的一些问题与处理方案，还有一些处理非常规需求的脑洞。 WKWebView长按导致的问题如果项目是window -&amp;gt; vc -&amp;gt; present tabController这样一种结构，在tabController中有一个webView，长按网页会出现UIAlertController,这时候做任何操作都会导致 tabController直接dismiss，问题的">
 
 
 
@@ -128,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://mumusa.github.io/year/03/14/时隔半年后的更新-Markdown基础写法/"/>
+  <link rel="canonical" href="http://mumusa.github.io/year/02/09/逃坑记/"/>
 
 
 
 
 
-  <title> 时隔半年后的更新-Markdown基础写法 | 张东帅小菜地 </title>
+  <title> 逃坑记 | 张东帅小菜地 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +271,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/03/14/时隔半年后的更新-Markdown基础写法/">
+    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/02/09/逃坑记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张东帅">
@@ -294,7 +292,7 @@
             
             
               
-                时隔半年后的更新-Markdown基础写法
+                逃坑记
               
             
           </h1>
@@ -309,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T16:06:46+08:00">
-                2017-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T10:51:21+08:00">
+                2018-02-09
               </time>
             
 
@@ -332,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Markdown/" itemprop="url" rel="index">
-                    <span itemprop="name">Markdown</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -350,9 +348,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/year/03/14/时隔半年后的更新-Markdown基础写法/#comments" itemprop="discussionUrl">
+                <a href="/year/02/09/逃坑记/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="year/03/14/时隔半年后的更新-Markdown基础写法/" itemprop="commentCount"></span>
+                        data-disqus-identifier="year/02/09/逃坑记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,79 +376,11 @@
       
 
       
-        <p>问：写博客需要几步？<br>第一步：博客建站<br>第二步：写咯<br>第三步：文章放上站点<br>既然站点已经建好，那就来写吧，网上找了一圈，大伙推荐的工具都是Mou（免费）,Ulysses(付费)这些，免费的Mou不支持 OS10.12，手贱如我系统已经更新了，付费的想来也不太适合，那就用Xcode如何写md文件吧。顺便可以熟悉Markdown语法。💐（闲话）不说开始咯！</p>
-<a id="more"></a> 
-<h2 id="标题样式"><a href="#标题样式" class="headerlink" title="标题样式"></a>标题样式</h2><p>用法就是在文字面前加” # “就好了，实践中需要注意的是直接“#”与文字之间最好有个空格，很多在线的编辑器，加不加空格是无所谓的，但是用Xcode编辑的话是需要这样的。</p>
-<blockquote>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3></blockquote>
-<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>段落的前后要有空行，所谓的空行就是没有文字内容，段落前回车空一行，段落文字结尾会车空一行，如果想在段落内强制换行的方式是使用两个以上空格加上回车。示例：</p>
-<p>段落开头</p>
-<p>段落内换行   </p>
-<p>段落结尾</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>如果需要引用一小段别处的句子，那么引用格式的写法是，在文本前加入” &gt; “，示例：</p>
-<blockquote>
-<p>这是一种引用</p>
-<blockquote>
-<p>嵌套引用</p>
-</blockquote>
-</blockquote>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>插入链接与插入图片的语法很像，区别在一个 <code>！感叹号</code>。</p>
-<p>示例：<br>![avatar](<a href="https://raw.githubusercontent.com/younghz/Markdown/master/resource/Aaron_Swartz.jpg" target="_blank" rel="noopener">https://raw.githubusercontent.com/younghz/Markdown/master/resource/Aaron_Swartz.jpg</a>)<br>效果：<br><img src="https://raw.githubusercontent.com/younghz/Markdown/master/resource/Aaron_Swartz.jpg" alt="avatar"></p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>链接可以由两周形式生成：<code>行内式</code> 和<code>参数式</code></p>
-<p>行内式：</p>
-<blockquote>
-<p>[张东帅的小菜地](<a href="https://mumusa.github.io">https://mumusa.github.io</a>)<br>效果：<br><a href="https://mumusa.github.io">张东帅的小菜地</a></p>
-</blockquote>
-<p>参考式：</p>
-<blockquote>
-<p>[张东帅的小菜地1][1]<br>[张东帅的小菜地2][2]</p>
-<p>[1]: <a href="https://mumusa.github.io">https://mumusa.github.io</a></p>
-<p>[2]: <a href="https://mumusa.github.io">https://mumusa.github.io</a></p>
-</blockquote>
-<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>在强调内容两侧分别加上<code>*</code> 或者 <code>_</code>，引用可以用<code>\</code> `表示。</p>
-<p>示例：</p>
-<blockquote>
-<p>*斜体*    _斜体_<br>**粗体**    __粗体__<br>~~删除线~~<br>***斜粗体***</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<p><em>斜体</em><br><strong>粗体</strong><br><del>删除线</del><br><strong><em>斜粗体</em></strong></p>
-</blockquote>
-<h2 id="代码框"><a href="#代码框" class="headerlink" title="代码框"></a>代码框</h2><p>作为一名程序员，代码框的引用实在是必不可少的只需要用在每行开头加上四个空格就好把代码包裹起来就好了，直接用Xcode编辑的话只需要tab缩紧一下就可以生成代码框样式，而单引号这种样式实在叫人头疼，直接用单引号扩起来是无法生成代码框样式，于是我怀疑是中英文切换的缘故，换中文也不对；“`”这个奇怪的符号臣妾实在是不会用键盘打出来啊&gt;_&lt;。经过反复测试这个符号在英文输入环境下mac的数字键1左边的键可以打出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;皮皮虾，我们走！&quot;)</span><br></pre></td></tr></table></figure>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>使用<code>·</code>、<code>+</code> 或 <code>-</code> 标记无序列表。<br>示例：</p>
-<blockquote>
-<p>- (+*) 第一项<br>- (+*) 第二项<br>- (+*) 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>第一项 </li>
-<li>第二项</li>
-<li>第三项</li>
-</ul>
-</blockquote>
-<p>有序列表的标记方式是将上述的符号换成数字，并辅以<code>.</code><br>示例：</p>
-<blockquote>
-<p>1 . 第一项<br>2 . 第二项<br>3 . 第三项</p>
-</blockquote>
-<p>效果：</p>
-<blockquote>
-<ol>
-<li>第一项</li>
-<li>第二项</li>
-<li>第三项</li>
-</ol>
-</blockquote>
-<h2 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h2><p>特殊标记如<code>##</code> 这种可以用<code>\</code>转义一下，不需要的文字也可以用<code>&lt;!--标记内容--&gt;</code>，反正用Xcode跟添加代码注释一致。</p>
-<!--## 列表(非Traditional markdown)-->
-<!--用` | ` 表示表格纵向边界，表头和表内容用 ` - ` 隔开，并可用` : ` 进行对其设置，两边都有 ` : ` 表示居中，不加则默认左对齐-->
-<!--|代码库                                     |链接                                                 |-->
-<!--|:----------------------------------------:|----------------------------------------------------|-->
-<!--|YYKit                    |[https://github.com/ibireme/YYKit](https://github.com/ibireme/YYKit) |-->
-<!---->
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>分割线的写法就比较方便，只需要用三个星号表示就好。</p>
-<hr>
+        <h2 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h2><p>本文旨在记录最近遇到的一些问题与处理方案，还有一些处理非常规需求的脑洞。</p>
+<h2 id="WKWebView长按导致的问题"><a href="#WKWebView长按导致的问题" class="headerlink" title="WKWebView长按导致的问题"></a>WKWebView长按导致的问题</h2><p>如果项目是window -&gt; vc -&gt; present tabController这样一种结构，在tabController中有一个webView，长按网页会出现UIAlertController,这时候做任何操作都会导致 tabController直接dismiss，问题的诡异在于这个dismiss的方法无法调试。</p>
+<h2 id="监听ScrollView停止滚动"><a href="#监听ScrollView停止滚动" class="headerlink" title="监听ScrollView停止滚动"></a>监听ScrollView停止滚动</h2><p>在水群中看到某个小伙伴提出这样一个需求，在不用UIScrollViewDelegate的情况下如何知道ScrollView停止了滚动呢，很多人看到这里脑子里想到的第一个方案肯定是KVO,监听 contentOffset的值变化，然后通过新旧值的变化来判断是否停止滚动哈。</p>
+<p>这里我们先来谈谈ScrollView 停止滚动有多少种情况：<br>1、划一下，自然停止滚动；<br>2、当ScrollView正在快速滚动时，手指按住屏幕停止滚动；<br>3、手指不离开屏幕，慢速上下滑动停止。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)creatUIRunloopObserver:(CFOptionFlags)flag &#123;</span><br><span class="line">CFRunLoopRef runLoop = CFRunLoopGetCurrent();</span><br><span class="line">CFStringRef runLoopMode = (__bridge CFStringRef)UITrackingRunLoopMode;<span class="comment">//kCFRunLoopCommonModes;//kCFRunLoopDefaultMode;</span></span><br><span class="line">CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, flag, <span class="literal">true</span>, <span class="number">0</span>, ^(CFRunLoopObserverRef observer, CFRunLoopActivity _activity) &#123;</span><br><span class="line"><span class="comment">//NSLog(@"%@",(__bridge NSString *)runLoopMode);//NSDefaultRunLoopMode</span></span><br><span class="line"><span class="comment">//这是一个回调 即使这个方法不被调用，这个observer也会进行不断的回调，这里面就是runloop的运行过程</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (_activity) &#123;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopEntry: &#123;</span><br><span class="line"><span class="comment">//if (start == 0) start = CFAbsoluteTimeGetCurrent();</span></span><br><span class="line">NSLog(@<span class="string">"即将进入Loop"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeTimers: &#123;</span><br><span class="line">NSLog(@<span class="string">"即将处理 Timer"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeSources:</span><br><span class="line">NSLog(@<span class="string">"即将处理 Source"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopBeforeWaiting:</span><br><span class="line">NSLog(@<span class="string">"即将进入休眠"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopAfterWaiting:</span><br><span class="line">NSLog(@<span class="string">"刚从休眠中唤醒"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> kCFRunLoopExit:</span><br><span class="line">NSLog(@<span class="string">"UITracking 即将退出Loop"</span>);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">CFRunLoopAddObserver(runLoop, observer, runLoopMode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -480,7 +410,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+            <a href="/tags/Bug-脑洞/" rel="tag"># Bug 脑洞</a>
           
         </div>
       
@@ -493,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/year/09/30/第一篇hexo搭建博客/" rel="next" title="开篇">
-                <i class="fa fa-chevron-left"></i> 开篇
+              <a href="/year/11/13/Shell入门读书笔记/" rel="next" title="Shell入门读书笔记">
+                <i class="fa fa-chevron-left"></i> Shell入门读书笔记
               </a>
             
           </div>
@@ -502,10 +432,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/year/05/05/常用的Block浅析/" rel="prev" title="常用的Block浅析">
-                常用的Block浅析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -675,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题样式"><span class="nav-number">1.</span> <span class="nav-text">标题样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一级标题"><span class="nav-number"></span> <span class="nav-text">一级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二级标题"><span class="nav-number">1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题"><span class="nav-number">1.1.</span> <span class="nav-text">三级标题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#段落"><span class="nav-number">2.</span> <span class="nav-text">段落</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片"><span class="nav-number">4.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">5.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强调"><span class="nav-number">6.</span> <span class="nav-text">强调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码框"><span class="nav-number">7.</span> <span class="nav-text">代码框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">8.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊符号"><span class="nav-number">9.</span> <span class="nav-text">特殊符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">10.</span> <span class="nav-text">分割线</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WKWebView长按导致的问题"><span class="nav-number">2.</span> <span class="nav-text">WKWebView长按导致的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听ScrollView停止滚动"><span class="nav-number">3.</span> <span class="nav-text">监听ScrollView停止滚动</span></a></li></ol></div>
             
 
           </div>
@@ -814,9 +740,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mumusa.github.io/year/03/14/时隔半年后的更新-Markdown基础写法/';
-          this.page.identifier = 'year/03/14/时隔半年后的更新-Markdown基础写法/';
-          this.page.title = '时隔半年后的更新-Markdown基础写法';
+          this.page.url = 'http://mumusa.github.io/year/02/09/逃坑记/';
+          this.page.identifier = 'year/02/09/逃坑记/';
+          this.page.title = '逃坑记';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiaodong.disqus.com/embed.js';

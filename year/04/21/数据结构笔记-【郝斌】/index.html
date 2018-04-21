@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HTTP," />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -87,20 +87,18 @@
 
 
 
-<meta name="description" content="写在开头首先从五层协议谈起吧">
-<meta name="keywords" content="HTTP">
+<meta name="description" content="数据结构–研究数据存储问题 算法–对存储数据的操作 数据存储—数据个体的存储 个体与个体之间的关系的存储 算法的标准1、时间复杂度（大概执行的次数）2、空间复杂度（算法之行过程中大概所占的最大内存）3、难易程度4、健壮性 数据结构的存储结构1、线性存储（链表、队列、栈、数组）2、非线性存储（树和图） 线性结构：把所有的节点（元素）用一根直线穿起来 数组的优点1、元素类型相同，大小相等 123456">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图解HTTP读书笔记">
-<meta property="og:url" content="http://mumusa.github.io/year/06/16/图解HTTP读书笔记/index.html">
+<meta property="og:title" content="数据结构笔记-【郝斌】">
+<meta property="og:url" content="http://mumusa.github.io/year/04/21/数据结构笔记-【郝斌】/index.html">
 <meta property="og:site_name" content="张东帅小菜地">
-<meta property="og:description" content="写在开头首先从五层协议谈起吧">
+<meta property="og:description" content="数据结构–研究数据存储问题 算法–对存储数据的操作 数据存储—数据个体的存储 个体与个体之间的关系的存储 算法的标准1、时间复杂度（大概执行的次数）2、空间复杂度（算法之行过程中大概所占的最大内存）3、难易程度4、健壮性 数据结构的存储结构1、线性存储（链表、队列、栈、数组）2、非线性存储（树和图） 线性结构：把所有的节点（元素）用一根直线穿起来 数组的优点1、元素类型相同，大小相等 123456">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/16/%E5%9B%BE%E8%A7%A3HTTP%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/tcp_ip_1.png?raw=true">
-<meta property="og:updated_time" content="2017-08-08T10:43:08.000Z">
+<meta property="og:updated_time" content="2018-04-21T11:18:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图解HTTP读书笔记">
-<meta name="twitter:description" content="写在开头首先从五层协议谈起吧">
-<meta name="twitter:image" content="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/16/%E5%9B%BE%E8%A7%A3HTTP%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/tcp_ip_1.png?raw=true">
+<meta name="twitter:title" content="数据结构笔记-【郝斌】">
+<meta name="twitter:description" content="数据结构–研究数据存储问题 算法–对存储数据的操作 数据存储—数据个体的存储 个体与个体之间的关系的存储 算法的标准1、时间复杂度（大概执行的次数）2、空间复杂度（算法之行过程中大概所占的最大内存）3、难易程度4、健壮性 数据结构的存储结构1、线性存储（链表、队列、栈、数组）2、非线性存储（树和图） 线性结构：把所有的节点（元素）用一根直线穿起来 数组的优点1、元素类型相同，大小相等 123456">
 
 
 
@@ -128,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://mumusa.github.io/year/06/16/图解HTTP读书笔记/"/>
+  <link rel="canonical" href="http://mumusa.github.io/year/04/21/数据结构笔记-【郝斌】/"/>
 
 
 
 
 
-  <title> 图解HTTP读书笔记 | 张东帅小菜地 </title>
+  <title> 数据结构笔记-【郝斌】 | 张东帅小菜地 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +271,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/06/16/图解HTTP读书笔记/">
+    <link itemprop="mainEntityOfPage" href="http://mumusa.github.io/year/04/21/数据结构笔记-【郝斌】/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张东帅">
@@ -294,7 +292,7 @@
             
             
               
-                图解HTTP读书笔记
+                数据结构笔记-【郝斌】
               
             
           </h1>
@@ -309,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T09:54:18+08:00">
-                2017-06-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T19:17:10+08:00">
+                2018-04-21
               </time>
             
 
@@ -320,28 +318,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -350,9 +326,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/year/06/16/图解HTTP读书笔记/#comments" itemprop="discussionUrl">
+                <a href="/year/04/21/数据结构笔记-【郝斌】/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="year/06/16/图解HTTP读书笔记/" itemprop="commentCount"></span>
+                        data-disqus-identifier="year/04/21/数据结构笔记-【郝斌】/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,25 +354,21 @@
       
 
       
-        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>首先从五层协议谈起吧<br><img src="https://github.com/mumusa/mumusa.github.io/blob/master/year/06/16/%E5%9B%BE%E8%A7%A3HTTP%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/tcp_ip_1.png?raw=true" alt="五层模型"></p>
-<a id="more"></a>
-<p>下面是每层上对应的协议<br>应用层——HTTP/SMTP/DNS/RTP<br>传输层——TCP/UDP<br>网络层——IP(网际协议)</p>
-<p>ps:这里要注意的是IP协议与IP地址是不同，IP协议是把各种数据包传递给对方，需要IP地址和MAC地址</p>
-<h3 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h3><p>凭借MAC地址来进行通信</p>
-<h3 id="URL-amp-amp-URI"><a href="#URL-amp-amp-URI" class="headerlink" title="URL &amp;&amp; URI"></a>URL &amp;&amp; URI</h3><p>URI 表示用字符串表示某一互联网资源(Uniform Resource Identifier),标准的URI 协议方案有三十多种。例如HTTP、ftp、mailto、file、telnet等，采用HTTP协议时，URI协议就是HTTP。以下是各个协议的常规写法</p>
-<blockquote>
-<p>ftp://ftep.is.co.za/rfc/rfc1808.text<br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br>idap://[2001.db8::7]/c=GB?objectclass?one<br>telnet://192.0.2.16:801<br>urn:oasis:name:specification:docbook:dtd:xml:4.1.2</p>
-</blockquote>
-<p>URL 表示资源的地点(互联网上所处的位置),它是URI 的子集,以下是URL 的常规写法。</p>
-<blockquote>
-<p>http: // user:pass    @    www.example.jp:    80   /dir/index.html ?    uid=1#       chl<br>协议方案名        登录信息         服务器地址  端口     带层次的文件路径   查询字符串     片段标识符</p>
-</blockquote>
-<h3 id="TCP-amp-amp-UDP"><a href="#TCP-amp-amp-UDP" class="headerlink" title="TCP &amp;&amp; UDP"></a>TCP &amp;&amp; UDP</h3><p>要谈TCP／UDP，我们可以先来看看socket，作为进程通信机制，通常被称为套接字，用于描述IP地址和端口，是一个通信链的句柄，为了更好的理解socket的工作原理，可以以一个电话网为例，打电话与接电话的双发相当于相互通信的2个程序，电话号码可以当作是两者的IP地址。任何用户在打电话的时候肯定需要一部电话，<strong><em>相当于申请一个socket</em></strong>；同时要知道对方的电话号码（IP地址），相当于对方有一个固定的socket。然后给对方拨号呼叫，相当于发出连接请求，如果对方在场并空闲，拿起电话话筒，双发就可以正式通话，相当于连接成功，通话过程相当于向socket发送数据和从socket接收数据，通话结束后，挂断电话的操作相当于关闭socket，撤销连接，通信完成。</p>
-<p>以上主要说了socket的工作流，那TCP／UDP又是干什么的呢？且听我慢慢道来，如果某一天你接到一个俄罗斯兄弟的电话，一个说俄语，一个说中文，这交流起来就有些鸡同鸭讲，完全不知所云了吧。但是如果我们给一个规定，要求通信的双方都必须说普通话，那么沟通起来就没有障碍啦，这就引出通信协议（TCP／UDP）来啦</p>
-<blockquote>
-<p>*TCP 是一种流模式的协议，面向连接，传输可靠，用于传输大量数据、速度相对UDP来说较慢</p>
-<p>*UDP 是一种数据报模式的协议，无连接服务应用，不安全（丢包，顺序混乱，在接收端要分析重排以及要求重发），但是效率高</p>
-</blockquote>
+        <p>数据结构–研究数据存储问题</p>
+<p>算法–对存储数据的操作</p>
+<p>数据存储—数据个体的存储 个体与个体之间的关系的存储</p>
+<p>算法的标准<br>1、时间复杂度（大概执行的次数）<br>2、空间复杂度（算法之行过程中大概所占的最大内存）<br>3、难易程度<br>4、健壮性</p>
+<p>数据结构的存储结构<br>1、线性存储（链表、队列、栈、数组）<br>2、非线性存储（树和图）</p>
+<p>线性结构：把所有的节点（元素）用一根直线穿起来</p>
+<p>数组的优点<br>1、元素类型相同，大小相等</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Array</span> &#123;</span></span><br><span class="line"><span class="keyword">int</span> *pBase; <span class="comment">//存储的是数组第一个元素的地址</span></span><br><span class="line"><span class="keyword">int</span> len;	<span class="comment">//数组所能容纳的最大元素个数</span></span><br><span class="line"><span class="keyword">int</span> count;	<span class="comment">//当前数组有效元素的个数</span></span><br><span class="line"><span class="keyword">int</span> increment; 	<span class="comment">//自动增长因子</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数组的缺点</p>
+<h3 id="typedef用法"><a href="#typedef用法" class="headerlink" title="typedef用法"></a>typedef用法</h3><p>typedef struct  Student {<br>int sid;<br>char name[100];<br>char sex;<br>} <em> PST, ST;    //PST 等价于struct Student </em>， ST 等价于 struct Student</p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>定义：<br>n个节点离散分配<br>彼此通过指针相连<br>每个节点只有一个前驱节点，每个节点只有一个后续节点，首节点没有前驱节点，尾节点没有后续节点<br>首节点–第一个有效的节点，就是存放有效数据的节点<br>尾节点–最后有效的一个节点<br>头节点–在首节点之前加的一个节点指向首节点，方便链表的增删改操作，不存放数据，头节点的数据类型和首节点数据类型一样<br>头指针–指向头节点的指针变量<br>尾指针–指向尾节点的指针变量</p>
+<p>如果希望通过一个函数来对链表进行处理需要几个参数：只要一个头指针，因为我们通过头指针可以推算出链表的其他所有信息</p>
+<p>分类：<br>单链表<br>双链表</p>
+<p>循环链表<br>非循环链表</p>
+<h4 id="链表节点的生成"><a href="#链表节点的生成" class="headerlink" title="链表节点的生成"></a>链表节点的生成</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span><span class="comment">//指针域</span></span><br><span class="line"><span class="keyword">int</span> value;<span class="comment">//数据域</span></span><br><span class="line">&#125;NODE, *PNODE;	<span class="comment">//NODE等价于struct Node, PNODE等价于struct *Node;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -426,7 +398,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -439,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/year/06/10/AutoreleasePool-浅析/" rel="next" title="AutoreleasePool 浅析">
-                <i class="fa fa-chevron-left"></i> AutoreleasePool 浅析
+              <a href="/year/02/09/逃坑记/" rel="next" title="逃坑记">
+                <i class="fa fa-chevron-left"></i> 逃坑记
               </a>
             
           </div>
@@ -448,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/year/07/10/BigBang源码分析/" rel="prev" title="BigBang源码分析">
-                BigBang源码分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -621,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开头"><span class="nav-number">1.</span> <span class="nav-text">写在开头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP"><span class="nav-number">1.1.</span> <span class="nav-text">ARP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-amp-amp-URI"><span class="nav-number">1.2.</span> <span class="nav-text">URL &amp;&amp; URI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-amp-amp-UDP"><span class="nav-number">1.3.</span> <span class="nav-text">TCP &amp;&amp; UDP</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef用法"><span class="nav-number">1.</span> <span class="nav-text">typedef用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.</span> <span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链表节点的生成"><span class="nav-number">2.1.</span> <span class="nav-text">链表节点的生成</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -760,9 +728,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://mumusa.github.io/year/06/16/图解HTTP读书笔记/';
-          this.page.identifier = 'year/06/16/图解HTTP读书笔记/';
-          this.page.title = '图解HTTP读书笔记';
+          this.page.url = 'http://mumusa.github.io/year/04/21/数据结构笔记-【郝斌】/';
+          this.page.identifier = 'year/04/21/数据结构笔记-【郝斌】/';
+          this.page.title = '数据结构笔记-【郝斌】';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiaodong.disqus.com/embed.js';

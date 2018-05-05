@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的Block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T03:20:51.000Z">
+<meta property="og:updated_time" content="2018-05-05T08:41:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的Block浅析">
 <meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的Block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
@@ -382,17 +382,17 @@
 <ul>
 <li><p>全局Block</p>
 <blockquote>
-<p><code>typedef int(^my)(int a);  有返回值有入参的全局Block</code><br><code>typedef void(^viewBlock)(); 无返回无入参的全局Block</code></p>
+<p><code>typedef int(^my)(int a);  有返回值有入参的全局Block</code><br><code>typedef void(^viewBlock)(void); 无返回无入参的全局Block</code></p>
 </blockquote>
 </li>
 <li><p>属性Block</p>
 <blockquote>
-<p><code>@property (nonatomic, copy)void(^propertyBlock)(); 作为属性的Block</code></p>
+<p><code>@property (nonatomic, copy)void(^propertyBlock)(void); 作为属性的Block</code></p>
 </blockquote>
 </li>
 <li><p>参数Block</p>
 <blockquote>
-<p><code>+ (void)Classhaha:(void(^)())block {</code><br><code>//作为参数传递的Block,也可以是全局声明好的Block</code><br><code>}</code></p>
+<p><code>+ (void)Classhaha:(void(^)(void))block {</code><br><code>//作为参数传递的Block,也可以是全局声明好的Block</code><br><code>}</code></p>
 </blockquote>
 </li>
 </ul>
@@ -402,6 +402,14 @@
 <h3 id="Block从栈被copy到堆的情况"><a href="#Block从栈被copy到堆的情况" class="headerlink" title="Block从栈被copy到堆的情况"></a>Block从栈被copy到堆的情况</h3><p>a.copy属性修饰符<br>b.手动copy调用方法<br>c.Block被强引用，被赋值给’__strong’或者’id’类型<br>d.Block是函数的返回值，这个也好理解，如果不被copy那么在生成Block的函数执行完，按道理Block也应该被销毁，为保证其可以继续使用，copy以延长其生命周期就很有必要<br>e.调用系统API入参中含有usingBlock的方法</p>
 <h3 id="block作用"><a href="#block作用" class="headerlink" title="__block作用"></a>__block作用</h3><p>我们都知道如果在方法实现中定义一个局部变量，那么如果要在Block 中对该变量进行修改的话，是需要用<strong>block 进行修饰的，那么为什么一个属性或者一个私有的成员变量不需要用</strong>block 修饰呢？那么你可以试着打印一下这三者的指针地址或许会有种醍醐灌顶的感觉，__block 的作用也只是把在栈区的变量copy 到堆区罢了；<br>ps: 如果对Block 的这种设计还是有些迷惑，那不妨这样想想，Block 是一种函数指针，当变量进入了Block 实际上就改变了它的作用域（Block 作为入参，Block作为返回值等等），那么在几个作用域之间进行切换，变量的可维护性就会大大降低，也会导致一些无法预计的问题。由此，这种限制修改变量的设计就很有必要了。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>1.Block的类型与内部变量所在内存的区域息息相关<br>2.闭包就是可以访问其他函数内部变量的函数，当然它的作用不仅于此<br>3.使用Block过程中其实只需要注意两个问题，一是循环引用，避免它的要点是先判断Block是否被某个实例对象强引用，同时在Block内也会对这个对象进行捕获；二是self在Block作用域内会销毁，</p>
+<hr>
+<h2 id="关于NSConcreateStackBlock的一些补充"><a href="#关于NSConcreateStackBlock的一些补充" class="headerlink" title="关于NSConcreateStackBlock的一些补充"></a>关于NSConcreateStackBlock的一些补充</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)test &#123;</span><br><span class="line">    __block <span class="keyword">int</span> a;</span><br><span class="line">    ^&#123;</span><br><span class="line">        a = <span class="number">10</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>理论上这应该是一个NSConcreateStackBlock，可是在真正的测试中缺发现它是一个NSConcreateMallockBlock，是那里不对呢，终于在<a href="http://ios.jobbole.com/81900/" target="_blank" rel="noopener">这里</a>找到了这样一种说法</p>
+<blockquote>
+<p>With the exception of retains done as part of initializing a <strong>strong parameter<br>variable or reading a </strong>weak variable, whenever these semantics call for retaining<br>a value of block-pointer type, it has the effect of a Block_copy. The optimizer may<br>remove such copies when it sees that the result is used only as an argument to a call.</p>
+<p>也就是说ARC帮助我们完成了copy的工作,在ARC下,即使你声明的修饰符是strong,实际上效果是与声明为copy一样的。</p>
+<p>因此在ARC情况下,创建的block仍然是NSConcreteStackBlock类型,只不过当block被引用或返回时,ARC帮助我们完成了copy和内存管理的工作。</p>
+</blockquote>
 
       
     </div>
@@ -626,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block类型反推"><span class="nav-number">2.</span> <span class="nav-text">Block类型反推</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众大V的博客中大多指出在ARC环境中有以下几种类型"><span class="nav-number">2.1.</span> <span class="nav-text">众大V的博客中大多指出在ARC环境中有以下几种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从捕获外部变量的角度上来看"><span class="nav-number">2.2.</span> <span class="nav-text">从捕获外部变量的角度上来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从持用对象的角度来看"><span class="nav-number">2.3.</span> <span class="nav-text">从持用对象的角度来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block从栈被copy到堆的情况"><span class="nav-number">2.4.</span> <span class="nav-text">Block从栈被copy到堆的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block作用"><span class="nav-number">2.5.</span> <span class="nav-text">__block作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block类型反推"><span class="nav-number">2.</span> <span class="nav-text">Block类型反推</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众大V的博客中大多指出在ARC环境中有以下几种类型"><span class="nav-number">2.1.</span> <span class="nav-text">众大V的博客中大多指出在ARC环境中有以下几种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从捕获外部变量的角度上来看"><span class="nav-number">2.2.</span> <span class="nav-text">从捕获外部变量的角度上来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从持用对象的角度来看"><span class="nav-number">2.3.</span> <span class="nav-text">从持用对象的角度来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block从栈被copy到堆的情况"><span class="nav-number">2.4.</span> <span class="nav-text">Block从栈被copy到堆的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block作用"><span class="nav-number">2.5.</span> <span class="nav-text">__block作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于NSConcreateStackBlock的一些补充"><span class="nav-number">4.</span> <span class="nav-text">关于NSConcreateStackBlock的一些补充</span></a></li></ol></div>
             
 
           </div>

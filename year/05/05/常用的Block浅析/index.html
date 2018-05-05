@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的Block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-05T08:41:48.000Z">
+<meta property="og:updated_time" content="2018-05-05T08:47:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的Block浅析">
 <meta name="twitter:description" content="起因大家说起Block，脑海中的第一反应恐怕就是循环引用这个常见的疑问，曾经我也是为此头疼不已，难以分清当前使用的Block是否捕获了外部变量。随着不断的找资料，有了以下几层理解">
@@ -410,6 +410,8 @@
 <p>也就是说ARC帮助我们完成了copy的工作,在ARC下,即使你声明的修饰符是strong,实际上效果是与声明为copy一样的。</p>
 <p>因此在ARC情况下,创建的block仍然是NSConcreteStackBlock类型,只不过当block被引用或返回时,ARC帮助我们完成了copy和内存管理的工作。</p>
 </blockquote>
+<h2 id="类方法中的Block"><a href="#类方法中的Block" class="headerlink" title="类方法中的Block"></a>类方法中的Block</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[UIView animateWithDuration:<span class="number">0.2</span> animations:^&#123;</span><br><span class="line">    self.view.hidden = YES;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>不少面试题中都会说这种情况下是不会循环引用，可是究竟是何道理说的都不是很明朗，归根结底是因为这是一个类方法，不要被其中的self所迷惑，当中的block跟self不会有一毛钱关系，所以不存在持有关系;</p>
 
       
     </div>
@@ -634,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block类型反推"><span class="nav-number">2.</span> <span class="nav-text">Block类型反推</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众大V的博客中大多指出在ARC环境中有以下几种类型"><span class="nav-number">2.1.</span> <span class="nav-text">众大V的博客中大多指出在ARC环境中有以下几种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从捕获外部变量的角度上来看"><span class="nav-number">2.2.</span> <span class="nav-text">从捕获外部变量的角度上来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从持用对象的角度来看"><span class="nav-number">2.3.</span> <span class="nav-text">从持用对象的角度来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block从栈被copy到堆的情况"><span class="nav-number">2.4.</span> <span class="nav-text">Block从栈被copy到堆的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block作用"><span class="nav-number">2.5.</span> <span class="nav-text">__block作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于NSConcreateStackBlock的一些补充"><span class="nav-number">4.</span> <span class="nav-text">关于NSConcreateStackBlock的一些补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block类型反推"><span class="nav-number">2.</span> <span class="nav-text">Block类型反推</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众大V的博客中大多指出在ARC环境中有以下几种类型"><span class="nav-number">2.1.</span> <span class="nav-text">众大V的博客中大多指出在ARC环境中有以下几种类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从捕获外部变量的角度上来看"><span class="nav-number">2.2.</span> <span class="nav-text">从捕获外部变量的角度上来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从持用对象的角度来看"><span class="nav-number">2.3.</span> <span class="nav-text">从持用对象的角度来看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block从栈被copy到堆的情况"><span class="nav-number">2.4.</span> <span class="nav-text">Block从栈被copy到堆的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block作用"><span class="nav-number">2.5.</span> <span class="nav-text">__block作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于NSConcreateStackBlock的一些补充"><span class="nav-number">4.</span> <span class="nav-text">关于NSConcreateStackBlock的一些补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类方法中的Block"><span class="nav-number">5.</span> <span class="nav-text">类方法中的Block</span></a></li></ol></div>
             
 
           </div>

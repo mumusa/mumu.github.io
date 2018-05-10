@@ -382,7 +382,7 @@
       
         
           <p>本文旨在通过具体的代码应用来解释runtime的实际应用场景。</p>
-<h2 id="获取某个类的所有变量"><a href="#获取某个类的所有变量" class="headerlink" title="获取某个类的所有变量"></a>获取某个类的所有变量</h2><p>我们可以通过runtime获取到某个类的所有变量、Method、Protocol、属性的集合。<br>所涉及到的API有<br>&gt;</p>
+<h2 id="获取某个类的相关信息"><a href="#获取某个类的相关信息" class="headerlink" title="获取某个类的相关信息"></a>获取某个类的相关信息</h2><p>我们可以通过runtime获取到某个类的所有变量、Method、Protocol、属性的集合。<br>所涉及到的API有<br>&gt;</p>
 <blockquote>
 <p>Ivar <em>class_copyIvarList(Class cls, unsigned int </em>outCount)<br>Method <em>class_copyMethodList(Class cls, unsigned int </em>outCount)<br>Protocol <em> __unsafe_unretained </em>class_copyProtocolList(Class cls, unsigned int <em>outCount)<br>objc_property_t </em>class_copyPropertyList(Class cls, unsigned int *outCount)</p>
 </blockquote>

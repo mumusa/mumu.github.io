@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="张东帅小菜地">
 <meta property="og:description" content="本文旨在通过具体的代码应用来解释runtime的实际应用场景。 获取某个类的相关信息我们可以通过runtime获取到某个类的所有变量、Method、Protocol、属性的集合。所涉及到的API有&amp;gt;  Ivar class_copyIvarList(Class cls, unsigned int outCount)Method class_copyMethodList(Class cls,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-10T08:31:58.000Z">
+<meta property="og:updated_time" content="2018-05-10T12:20:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime的七种应用">
 <meta name="twitter:description" content="本文旨在通过具体的代码应用来解释runtime的实际应用场景。 获取某个类的相关信息我们可以通过runtime获取到某个类的所有变量、Method、Protocol、属性的集合。所涉及到的API有&amp;gt;  Ivar class_copyIvarList(Class cls, unsigned int outCount)Method class_copyMethodList(Class cls,">
@@ -383,8 +383,7 @@
 </blockquote>
 <a id="more"></a>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@interface Person : NSObject</span><br><span class="line"></span><br><span class="line">@property(nonatomic,copy) NSString *name;</span><br><span class="line">@property(nonatomic,copy) NSString *sex;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)testIvar &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    Ivar *ivar = class_copyIvarList([self.person class], &amp;count);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;count; i++) &#123;</span><br><span class="line">        Ivar var = ivar[i];</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *varName = ivar_getName(var);</span><br><span class="line">        NSString *proname = [NSString stringWithUTF8String:varName];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ([proname isEqualToString:@<span class="string">"_name"</span>]) &#123;   <span class="comment">//这里别忘了给属性加下划线</span></span><br><span class="line">            object_setIvar(self.person, var, @<span class="string">"daming"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="为某个类动态添加方法"><a href="#为某个类动态添加方法" class="headerlink" title="为某个类动态添加方法"></a>为某个类动态添加方法</h2><p>如果说</p>
-
+<h2 id="为某个类动态添加方法"><a href="#为某个类动态添加方法" class="headerlink" title="为某个类动态添加方法"></a>为某个类动态添加方法</h2>
       
     </div>
 
